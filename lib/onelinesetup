@@ -2,8 +2,12 @@
 DOMAIN=${1:-magento2.test}
 VERSION=${2:-2.4.0}
 EDITION=${3:-community}
+BRANCH=${4:-master}
+GITHUB_USER=${5:-markshust}
 
-curl -s https://raw.githubusercontent.com/markshust/docker-magento/master/lib/template | bash
+URL="https://raw.githubusercontent.com/${GITHUB_USER}/docker-magento/${BRANCH}/lib/template"
+echo Downloading $URL ...
+curl -v $URL | bash
 bin/download $VERSION $EDITION
 
 echo "Your system password has been requested to add an entry to /etc/hosts..."
